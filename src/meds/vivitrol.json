@@ -95,7 +95,7 @@
               }
             },
             {
-              "maxDays": 34,
+              "maxDays": 35,
               "guidance": {
                 "idealSteps": [
                   "Urine drug screen not required",
@@ -108,7 +108,7 @@
               }
             },
             {
-              "maxDays": 41,
+              "maxDays": 42,
               "guidance": {
                 "idealSteps": [
                   "Obtain a point-of-care urine drug screen unless you have strong confidence the patient has not used opioids (document in chart).",
