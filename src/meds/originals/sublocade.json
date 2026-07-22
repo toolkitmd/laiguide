@@ -13,29 +13,6 @@
         "late": {
             "variants": [
                 {
-                    "key": "100mg-booster",
-                    "internalNotes": [
-                        "Booster dose, optional additional dose between monthly dosing"
-                    ],
-                    "tiers": [
-                        {
-                            "maxDays": null,
-                            "guidance": {
-                                "idealSteps": [
-                                    "A booster dose may be administered any time if these requirements are met:",
-                                    "The client wants the booster dose ",
-                                    "At least 24 hours has passed since the last LAI-buprenorphine injection",
-                                    "The client continues to report use of unregulated fentanyl or other unregulated opioids during the present day"
-                                ],
-                                "providerNotifications": [
-                                    "If the client is reporting NO use of unregulated opioids, please consult a provider. The main risk in this situation is too much buprenorphine causing sedation."
-                                ],
-                                "pragmaticVariations": []
-                            }
-                        }
-                    ]
-                },
-                {
                     "key": "100mg-monthly",
                     "internalNotes": [
                         "Standard monthly tiers — same threshold structure as Brixadi monthly"
@@ -240,6 +217,19 @@
                     ]
                 }
             ]
+        },
+        "booster": {
+            "idealSteps": [
+                "A booster dose may be administered any time if these requirements are met:",
+                "The client wants the booster dose",
+                "At least 24 hours has passed since the last LAI-buprenorphine injection",
+                "No more than 4 weeks has passed since last LAI-buprenorphine injection (else, administer the regular maintenance dose)",
+                "The client continues to report use of unregulated fentanyl or other unregulated opioids during the present day"
+            ],
+            "providerNotifications": [
+                "If the client is reporting NO use of unregulated opioids, please consult a provider. The main risk in this situation is too much buprenorphine causing sedation."
+            ],
+            "pragmaticVariations": []
         }
     },
     "optgroupLabel": "Addiction Medicine",
@@ -250,7 +240,7 @@
                 {
                     "type": "date",
                     "id": "last-sublocade",
-                    "label": "Date of last Sublocade injection"
+                    "label": "Date of last regular maintenance dose of Sublocade"
                 },
                 {
                     "type": "select",
@@ -258,10 +248,6 @@
                     "label": "Sublocade dose and history",
                     "placeholder": "Select dose/history...",
                     "options": [
-                        {
-                            "value": "100mg-booster",
-                            "label": "Sublocade 100 mg - booster dose"
-                        },
                         {
                             "value": "100mg-monthly",
                             "label": "Sublocade 100 mg - monthly dosing"
@@ -283,7 +269,7 @@
         "requiredFields": [
             {
                 "id": "last-sublocade",
-                "message": "Please enter the date of last Sublocade injection."
+                "message": "Please enter the date of last regular maintenance dose of Sublocade."
             },
             {
                 "id": "sublocade-type",
