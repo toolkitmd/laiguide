@@ -1,9 +1,6 @@
 {
     "displayName": "Brixadi (buprenorphine)",
     "guidance": {
-        "shared": {
-            "providerNotifications": []
-        },
         "early": {
             "minDays": 21,
             "variants": [

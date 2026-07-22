@@ -1,9 +1,6 @@
 {
     "displayName": "Sublocade (buprenorphine)",
     "guidance": {
-        "shared": {
-            "providerNotifications": []
-        },
         "early": {
             "guidanceNote": [
                 "This may be given earlier with provider approval; consult provider if wanting order to administer early"
