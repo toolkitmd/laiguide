@@ -164,6 +164,7 @@
         "A booster dose may be administered any time if these requirements are met:",
         "The client wants the booster dose",
         "At least 24 hours has passed since the last LAI-buprenorphine injection",
+        "No more than 4 weeks has passed since last LAI-buprenorphine injection (else, administer the regular maintenance dose)",
         "The client continues to report use of unregulated fentanyl or other unregulated opioids during the present day"
       ],
       "providerNotifications": [
