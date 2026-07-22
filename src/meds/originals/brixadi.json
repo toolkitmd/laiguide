@@ -10,17 +10,25 @@
                 {
                     "key": "monthly-64",
                     "minDays": 21,
-                    "guidanceNote": ["This may be given earlier with provider approval; consult provider if wanting to give earlier"]
+                    "guidanceNote": [
+                        "This may be given earlier with provider approval; consult provider if wanting to give earlier"
+                    ]
                 },
                 {
                     "key": "monthly-96",
                     "sameAs": "monthly-64",
-                    "guidanceNote": ["This may be given earlier with provider approval; consult provider if wanting to give earlier"]
+                    "guidanceNote": [
+                        "This may be given earlier with provider approval; consult provider if wanting to give earlier"
+                    ],
+                    "minDays": null
                 },
                 {
                     "key": "monthly-128",
                     "sameAs": "monthly-64",
-                    "guidanceNote": ["This may be given earlier with provider approval; consult provider if wanting to give earlier"]
+                    "guidanceNote": [
+                        "This may be given earlier with provider approval; consult provider if wanting to give earlier"
+                    ],
+                    "minDays": null
                 },
                 {
                     "key": "weekly",
@@ -29,7 +37,8 @@
                         "This may be given earlier with provider approval; consult provider if wanting to give earlier"
                     ]
                 }
-            ]
+            ],
+            "guidanceNote": []
         },
         "late": {
             "variants": [
@@ -44,7 +53,9 @@
                             "guidance": {
                                 "idealSteps": [
                                     "The injection is not yet overdue (less than 3 weeks since last administration). Please consult the early administration guidance."
-                                ]
+                                ],
+                                "pragmaticVariations": [],
+                                "providerNotifications": []
                             }
                         },
                         {
@@ -53,7 +64,9 @@
                                 "idealSteps": [
                                     "Administer the next injection, regardless of the level of unregulated opioid use.",
                                     "If the patient reports active use of unregulated opioids, discuss a switch to a higher dose of LAI-buprenorphine and consult prescriber if the patient is interested.*"
-                                ]
+                                ],
+                                "pragmaticVariations": [],
+                                "providerNotifications": []
                             }
                         },
                         {
@@ -61,13 +74,14 @@
                             "guidance": {
                                 "idealSteps": [
                                     "Conduct a fentanyl dependence assessment before administering:",
-                                    "Administer next injection if the client has **“minimal/no fentanyl dependence”, see definition below**, or if the client has taken at least 8 mg of sublingual buprenorphine in the last 24 hours.",
+                                    "Administer next injection if the client has **“minimal/no fentanyl dependence”, see definition below**, or if the client has taken at least 8 mg of sublingual buprenorphine in the last 24 hours or received a Brixadi 96 mg (or more) or Sublocade 100 mg (or more) booster in the last 5 weeks.",
                                     "Administer if they have “moderate fentanyl dependence” and are ok with the risk of some bup-induced withdrawal.",
                                     "If the patient reports active use of unregulated opioids, discuss a switch to a higher dose of LAI-buprenorphine and consult prescriber if the patient is interested.*"
                                 ],
                                 "providerNotifications": [
                                     "Consult prescriber if patient does not meet minimal/no, or moderate fentanyl dependence criteria."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         },
                         {
@@ -75,12 +89,13 @@
                             "guidance": {
                                 "idealSteps": [
                                     "Conduct a fentanyl dependence assessment before administering:",
-                                    "Administer next injection if the client has **“minimal/no fentanyl dependence”, see definition below**, or if the client has taken at least 8 mg of sublingual buprenorphine in the last 24 hours.",
+                                    "Administer next injection if the client has **“minimal/no fentanyl dependence”, see definition below**, or if the client has taken at least 8 mg of sublingual buprenorphine in the last 24 hours or received a Brixadi 96 mg (or more) or Sublocade 100 mg (or more) booster in the last 5 weeks.",
                                     "If the patient reports active use of unregulated opioids, discuss a switch to a higher dose of LAI-buprenorphine and consult prescriber if the patient is interested.*"
                                 ],
                                 "providerNotifications": [
                                     "Consult prescriber if patient does not meet minimal/no fentanyl dependence criteria."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         },
                         {
@@ -91,7 +106,8 @@
                                 ],
                                 "providerNotifications": [
                                     "Consult prescriber before any injection."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         }
                     ]
@@ -115,7 +131,9 @@
                             "guidance": {
                                 "idealSteps": [
                                     "The weekly Brixadi injection is not yet due. Please consult the early administration guidance."
-                                ]
+                                ],
+                                "pragmaticVariations": [],
+                                "providerNotifications": []
                             }
                         },
                         {
@@ -123,7 +141,9 @@
                             "guidance": {
                                 "idealSteps": [
                                     "Administer the weekly Brixadi injection. Missed weekly doses (24 mg or 32 mg) may be given up to **9 days** after the last injection per the standing order."
-                                ]
+                                ],
+                                "pragmaticVariations": [],
+                                "providerNotifications": []
                             }
                         },
                         {
@@ -134,7 +154,8 @@
                                 ],
                                 "providerNotifications": [
                                     "Contact prescriber for guidance before administering."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         }
                     ]

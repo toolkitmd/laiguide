@@ -156,7 +156,7 @@ describe('vivitrol getLateGuidance', () => {
             );
         });
 
-        it('exact tier boundaries: 20/21, 34/35, 41/42, 56/57', () => {
+        it('exact tier boundaries: 20/21, 35/36, 42/43, 56/57', () => {
             expect(
                 getGuidance(20, 'overdose-prevention').idealSteps.some((s) =>
                     s.includes('not yet overdue'),
@@ -168,22 +168,22 @@ describe('vivitrol getLateGuidance', () => {
                 ),
             ).toBe(true);
             expect(
-                getGuidance(34, 'overdose-prevention').idealSteps.some((s) =>
+                getGuidance(35, 'overdose-prevention').idealSteps.some((s) =>
                     s.includes('no intentional daily use'),
                 ),
             ).toBe(true);
             expect(
-                getGuidance(35, 'overdose-prevention').idealSteps.some((s) =>
-                    s.includes('unless you have strong confidence'),
-                ),
-            ).toBe(true);
-            expect(
-                getGuidance(41, 'overdose-prevention').idealSteps.some((s) =>
+                getGuidance(36, 'overdose-prevention').idealSteps.some((s) =>
                     s.includes('unless you have strong confidence'),
                 ),
             ).toBe(true);
             expect(
                 getGuidance(42, 'overdose-prevention').idealSteps.some((s) =>
+                    s.includes('unless you have strong confidence'),
+                ),
+            ).toBe(true);
+            expect(
+                getGuidance(43, 'overdose-prevention').idealSteps.some((s) =>
                     s.includes('point-of-care urine drug screen'),
                 ),
             ).toBe(true);
@@ -223,7 +223,7 @@ describe('vivitrol getLateGuidance', () => {
             ).toBe(true);
         });
 
-        it('overdose-prevention: day 34 → no UDS; day 35 → conditional UDS; day 42 → UDS required; day 57 → consult', () => {
+        it('overdose-prevention: day 35 → no UDS; day 36 → conditional UDS; day 43 → UDS required; day 57 → consult', () => {
             const g = (d: number) =>
                 entry.getLateGuidance(
                     entry.buildLateParams({
@@ -231,12 +231,12 @@ describe('vivitrol getLateGuidance', () => {
                         'vivitrol-indication': 'overdose-prevention',
                     }),
                 ) as GuidanceResult;
-            expect(g(34).idealSteps.some((s) => s.includes('no intentional daily use'))).toBe(true);
+            expect(g(35).idealSteps.some((s) => s.includes('no intentional daily use'))).toBe(true);
             expect(
-                g(35).idealSteps.some((s) => s.includes('unless you have strong confidence')),
+                g(36).idealSteps.some((s) => s.includes('unless you have strong confidence')),
             ).toBe(true);
             expect(
-                g(42).idealSteps.some((s) => s.includes('point-of-care urine drug screen')),
+                g(43).idealSteps.some((s) => s.includes('point-of-care urine drug screen')),
             ).toBe(true);
             expect(
                 g(57).idealSteps.some((s) => s.includes('Consult provider before administering')),

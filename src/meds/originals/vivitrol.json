@@ -21,7 +21,9 @@
                             "guidance": {
                                 "idealSteps": [
                                     "Vivitrol is not yet overdue. Please consult the early administration guidance (no sooner than 20 days after the last injection)."
-                                ]
+                                ],
+                                "pragmaticVariations": [],
+                                "providerNotifications": []
                             }
                         },
                         {
@@ -32,7 +34,9 @@
                                     "No urine drug screen required at this interval.",
                                     "**Criteria met for \"minimal or no fentanyl dependence\"**, see definition below",
                                     "*If there is ongoing active fentanyl or other unregulated opioid use, discuss a switch to buprenorphine for more robust OUD treatment.*"
-                                ]
+                                ],
+                                "pragmaticVariations": [],
+                                "providerNotifications": []
                             }
                         },
                         {
@@ -44,7 +48,8 @@
                                 ],
                                 "providerNotifications": [
                                     "Consult provider if the urine drug screen is positive for fentanyl/methadone/opiates/oxycodone, or if patient does not meet \"minimal or no fentanyl dependence\" criteria."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         },
                         {
@@ -57,7 +62,8 @@
                                 ],
                                 "providerNotifications": [
                                     "Consult provider if unable to obtain UDS, if UDS is positive for fentanyl/methadone/opiates/oxycodone, or if patient does not meet \"minimal or no fentanyl dependence\" criteria."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         },
                         {
@@ -66,7 +72,10 @@
                                 "idealSteps": [
                                     "**Consult provider before administering Vivitrol.** The injection is more than 8 weeks overdue. Provider guidance is required before proceeding."
                                 ],
-                                "providerNotifications": ["Consult provider before any injection."]
+                                "providerNotifications": [
+                                    "Consult provider before any injection."
+                                ],
+                                "pragmaticVariations": []
                             }
                         }
                     ]
@@ -79,11 +88,13 @@
                             "guidance": {
                                 "idealSteps": [
                                     "Vivitrol is not yet overdue. Please consult the early administration guidance (no sooner than 3 weeks after the last injection)."
-                                ]
+                                ],
+                                "pragmaticVariations": [],
+                                "providerNotifications": []
                             }
                         },
                         {
-                            "maxDays": 34,
+                            "maxDays": 35,
                             "guidance": {
                                 "idealSteps": [
                                     "Urine drug screen not required",
@@ -91,11 +102,12 @@
                                 ],
                                 "providerNotifications": [
                                     "Consult provider if patient has regular opioid use."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         },
                         {
-                            "maxDays": 41,
+                            "maxDays": 42,
                             "guidance": {
                                 "idealSteps": [
                                     "Obtain a point-of-care urine drug screen unless you have strong confidence the patient has not used opioids (document in chart).",
@@ -104,7 +116,8 @@
                                 ],
                                 "providerNotifications": [
                                     "Consult provider if UDS positive for fentanyl/methadone/opiates/oxycodone or if there is concern about opioid dependence."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         },
                         {
@@ -117,7 +130,8 @@
                                 ],
                                 "providerNotifications": [
                                     "Consult provider if unable to obtain UDS, if UDS is positive for fentanyl/methadone/opiates/oxycodone, or if patient does not meet \"minimal or no fentanyl dependence\" criteria."
-                                ]
+                                ],
+                                "pragmaticVariations": []
                             }
                         },
                         {
@@ -126,7 +140,10 @@
                                 "idealSteps": [
                                     "**Consult provider before administering Vivitrol.** The injection is more than 8 weeks overdue. Provider guidance is required before proceeding."
                                 ],
-                                "providerNotifications": ["Consult provider before any injection."]
+                                "providerNotifications": [
+                                    "Consult provider before any injection."
+                                ],
+                                "pragmaticVariations": []
                             }
                         }
                     ]
