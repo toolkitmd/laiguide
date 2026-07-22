@@ -1,0 +1,10 @@
+# Normalize line endings to LF on checkout so Windows working copies match the
+# LF content stored in the repo. In particular, Playwright snapshot .txt files
+# are compared byte-for-byte against the browser's LF output, so a CRLF checkout
+# (git core.autocrlf=true) breaks every snapshot test locally.
+* text=auto eol=lf
+
+# Binary assets — never apply text/eol conversion.
+*.png binary
+*.pdf binary
+*.ico binary

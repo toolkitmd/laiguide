@@ -1,4 +1,4 @@
-import type { SubmitContext } from '../interfaces/guidance';
+import type { SubmitContext, GuidanceResult } from '../interfaces/guidance';
 import type {
     LateGuidanceParams,
     InfoRowSpec,
@@ -11,7 +11,7 @@ import type {
 } from '../interfaces/med';
 import { DAYS_PER_MONTH } from '../interfaces/med';
 import { daysSinceDate, formatDate, formatWeeksAndDays, pluralize } from '../utils';
-import { buildTiers, buildVariantMap, resolveLateTier } from './tierBuilder';
+import { buildTiers, buildVariantMap, resolveLateTier, normalizeGuidance } from './tierBuilder';
 import { composeEarlyGuidance, buildEarlyFields } from './earlyBuilder';
 
 /** Builds the `getLateGuidance` closure from a pre-built tiers map. */
@@ -39,6 +39,7 @@ export function buildCoreDef(json: any) {
     const tiersMap = buildVariantMap(lg['variants'] as VariantEntry[], buildTiers);
 
     const early = json.guidance.early;
+    const booster = json.guidance.booster as GuidanceResult | undefined;
     return {
         displayName: json.displayName as string,
         earlyGuidance: composeEarlyGuidance(
@@ -48,6 +49,7 @@ export function buildCoreDef(json: any) {
         ),
         ...buildEarlyFields(early, json.earlySpec),
         ...(commonNotifs?.length ? { commonProviderNotifications: commonNotifs } : {}),
+        ...(booster?.idealSteps?.length ? { boosterGuidance: normalizeGuidance(booster) } : {}),
         getLateGuidance: buildLateGuidanceFn(tiersMap),
     };
 }

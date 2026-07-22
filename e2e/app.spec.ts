@@ -779,11 +779,9 @@ test.describe('late guidance — Sublocade', () => {
         );
     });
 
-    test('100mg booster: administrable any time with criteria', async ({ page }) => {
+    test('booster guidance type: administrable any time with criteria', async ({ page }) => {
         await selectField(page, 'medication', 'sublocade');
-        await selectField(page, 'guidance-type', 'late');
-        await fillDate(page, 'last-sublocade', daysAgo(5));
-        await selectField(page, 'sublocade-type', '100mg-booster');
+        await selectField(page, 'guidance-type', 'booster');
 
         await expect(page.locator('.guidance-section')).toBeVisible();
         await expect(page.locator('.guidance-section')).toContainText('booster dose');

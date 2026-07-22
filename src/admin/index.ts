@@ -382,3 +382,27 @@ formEditorEl.addEventListener('removescenario', (e) => {
         console.error('[removescenario] Failed to remove scenario:', err);
     }
 });
+
+formEditorEl.addEventListener('addbooster', () => {
+    try {
+        if (!currentMedData) return;
+        const collected = collectFormData(formEditorEl, currentMedData) as RawMedJson;
+        collected.guidance.booster = { idealSteps: [''] };
+        currentMedData = collected;
+        renderForm(formEditorEl, collected);
+    } catch (err: unknown) {
+        console.error('[addbooster] Failed to add booster guidance:', err);
+    }
+});
+
+formEditorEl.addEventListener('removebooster', () => {
+    try {
+        if (!currentMedData) return;
+        const collected = collectFormData(formEditorEl, currentMedData) as RawMedJson;
+        delete collected.guidance.booster;
+        currentMedData = collected;
+        renderForm(formEditorEl, collected);
+    } catch (err: unknown) {
+        console.error('[removebooster] Failed to remove booster guidance:', err);
+    }
+});
