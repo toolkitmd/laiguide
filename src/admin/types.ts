@@ -72,6 +72,8 @@ export interface RawGuidance {
     shared?: RawSharedGuidance;
     early?: RawEarlyGuidance;
     late: RawLateGuidance;
+    /** Optional flat booster guidance (same shape as a tier's guidance). */
+    booster?: RawTierGuidance;
 }
 
 /**

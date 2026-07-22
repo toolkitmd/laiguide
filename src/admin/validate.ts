@@ -103,5 +103,16 @@ export function validateMedJson(raw: unknown): ValidationResult {
         if (err) return { ok: false, error: err };
     }
 
+    const booster = guidance.booster as Record<string, unknown> | undefined;
+    if (booster) {
+        const steps = booster.idealSteps;
+        if (!Array.isArray(steps) || steps.length === 0) {
+            return {
+                ok: false,
+                error: 'Booster Guidance: must have at least one Ideal Step (or remove the Booster Guidance section).',
+            };
+        }
+    }
+
     return { ok: true, data: d as RawMedJson };
 }

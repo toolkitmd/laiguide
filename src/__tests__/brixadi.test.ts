@@ -7,6 +7,20 @@ function getBrixadiGuidance(days: number, variant: string): GuidanceResult {
     return MED_REGISTRY['brixadi'].getLateGuidance({ daysSince: days, variant }) as GuidanceResult;
 }
 
+describe('brixadi booster guidance', () => {
+    it('exposes boosterGuidance with the booster requirements', () => {
+        const r = MED_REGISTRY['brixadi'].boosterGuidance as GuidanceResult;
+        expect(r).toBeDefined();
+        expect(
+            r.idealSteps.some((s) => s.includes('booster dose may be administered any time')),
+        ).toBe(true);
+        expect(r.idealSteps.some((s) => s.includes('At least 24 hours'))).toBe(true);
+        expect(hasNotif(r.providerNotifications, 'reporting NO use of unregulated opioids')).toBe(
+            true,
+        );
+    });
+});
+
 describe('getBrixadiGuidance', () => {
     describe('monthly (64/96/128 mg) — 5 tiers', () => {
         it('≤20 days: not yet overdue', () => {

@@ -12,6 +12,7 @@ import {
     NEXT_INJECTION_DATE_ID,
     LAST_INJECTION_DATE_ID,
     LATE_GUIDANCE_LABEL,
+    BOOSTER_GUIDANCE_LABEL,
     ADDICTION_MEDICINE_LABEL,
 } from './domIds';
 import { infoRow, threePartGuidance, injectGuidanceSection } from './guidanceRenderer';
@@ -25,6 +26,19 @@ export function handleGuidanceTypeChange(): void {
     if (gtGroup) gtGroup.style.display = medication ? 'block' : 'none';
     if (!medication) {
         clear(GUIDANCE_TYPE_ID);
+    }
+
+    // The Booster toggle only exists for meds whose JSON has a `guidance.booster` block.
+    const boosterBtn = document.querySelector<HTMLButtonElement>('.seg-btn[data-value="booster"]');
+    const boosterEntry = medication ? MED_REGISTRY[medication as MedicationKey] : undefined;
+    const hasBooster = !!boosterEntry?.boosterGuidance?.idealSteps?.length;
+    if (boosterBtn) boosterBtn.style.display = hasBooster ? '' : 'none';
+    // If Booster was selected but the newly-selected med has none, reset the toggle.
+    if (guidanceType === 'booster' && !hasBooster) {
+        clear(GUIDANCE_TYPE_ID);
+        document
+            .querySelectorAll<HTMLButtonElement>('.seg-btn')
+            .forEach((b) => b.classList.remove('seg-btn--active'));
     }
 
     Object.values(MED_REGISTRY).forEach((e) => {
@@ -109,6 +123,12 @@ export function checkAutoSubmit(): void {
         return;
     }
 
+    // Booster guidance takes no inputs — render as soon as the type is selected.
+    if (guidanceType === 'booster') {
+        handleSubmit();
+        return;
+    }
+
     const groups = document.querySelectorAll<HTMLElement>('.input-group[id]');
     for (const group of groups) {
         if (group.id === GUIDANCE_TYPE_GROUP_ID) continue;
@@ -182,6 +202,26 @@ function showLateGuidance(medication: string, ctx: SubmitContext): void {
     injectGuidanceSection(rows, body);
 }
 
+function showBoosterGuidance(medication: string): void {
+    const entry = MED_REGISTRY[medication as MedicationKey];
+    if (!entry?.boosterGuidance) {
+        alert('Booster guidance for this medication does not exist.');
+        return;
+    }
+
+    const rows =
+        infoRow('Medication:', entry.displayName) +
+        infoRow('Guidance Type:', BOOSTER_GUIDANCE_LABEL);
+
+    const body = threePartGuidance(
+        entry.boosterGuidance,
+        entry.commonProviderNotifications,
+        entry.optgroupLabel === ADDICTION_MEDICINE_LABEL,
+    );
+
+    injectGuidanceSection(rows, body);
+}
+
 export function handleSubmit(): void {
     try {
         const medication = val(MEDICATION_ID);
@@ -198,6 +238,8 @@ export function handleSubmit(): void {
 
         if (guidanceType === 'early') {
             showEarlyGuidanceValidated(medication);
+        } else if (guidanceType === 'booster') {
+            showBoosterGuidance(medication);
         } else {
             showLateGuidance(
                 medication,
@@ -255,6 +297,10 @@ export function startOver(): void {
         document
             .querySelectorAll<HTMLButtonElement>('.seg-btn')
             .forEach((b) => b.classList.remove('seg-btn--active'));
+        const boosterBtn = document.querySelector<HTMLButtonElement>(
+            '.seg-btn[data-value="booster"]',
+        );
+        if (boosterBtn) boosterBtn.style.display = 'none';
         const gtGroup = document.getElementById(GUIDANCE_TYPE_GROUP_ID) as HTMLElement | null;
         if (gtGroup) gtGroup.style.display = 'none';
 

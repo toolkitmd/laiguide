@@ -9,5 +9,6 @@ export const GUIDANCE_SECTION_SEL = '.guidance-section';
 export const FORM_SECTION_SEL = '.form-section';
 export const EARLY_GUIDANCE_LABEL = 'Early Administration';
 export const LATE_GUIDANCE_LABEL = 'Late/Overdue Administration';
+export const BOOSTER_GUIDANCE_LABEL = 'Booster';
 export const ADDICTION_MEDICINE_LABEL = 'Addiction Medicine';
 export const DISCLAIMER_SEL = '.disclaimer';

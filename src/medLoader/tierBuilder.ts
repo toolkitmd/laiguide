@@ -5,7 +5,7 @@ function days(n: number | null): number {
     return n === null ? Infinity : n;
 }
 
-function normalizeGuidance(g: GuidanceResult): GuidanceResult {
+export function normalizeGuidance(g: GuidanceResult): GuidanceResult {
     const result: GuidanceResult = { idealSteps: g.idealSteps };
     if (g.pragmaticVariations?.length) result.pragmaticVariations = g.pragmaticVariations;
     if (g.providerNotifications?.length) result.providerNotifications = g.providerNotifications;

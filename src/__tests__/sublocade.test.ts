@@ -10,34 +10,29 @@ function getGuidance(days: number, variant: string): GuidanceResult {
     }) as GuidanceResult;
 }
 
-describe('sublocade getLateGuidance', () => {
-    // ── 100 mg booster ─────────────────────────────────────────────────────
-    describe('100 mg booster — 1 tier (any time)', () => {
-        it('any daysSince: booster requirements guidance', () => {
-            const r = getGuidance(0, '100mg-booster');
-            expect(
-                r.idealSteps.some((s) => s.includes('booster dose may be administered any time')),
-            ).toBe(true);
-            expect(r.idealSteps.some((s) => s.includes('At least 24 hours'))).toBe(true);
-            expect(
-                r.idealSteps.some((s) =>
-                    s.includes('unregulated fentanyl or other unregulated opioids'),
-                ),
-            ).toBe(true);
-            expect(
-                hasNotif(r.providerNotifications, 'reporting NO use of unregulated opioids'),
-            ).toBe(true);
-        });
-
-        it('same result regardless of daysSince', () => {
-            const r0 = getGuidance(0, '100mg-booster');
-            const r30 = getGuidance(30, '100mg-booster');
-            const r90 = getGuidance(90, '100mg-booster');
-            expect(r0.idealSteps).toEqual(r30.idealSteps);
-            expect(r0.idealSteps).toEqual(r90.idealSteps);
-        });
+describe('sublocade booster guidance', () => {
+    // Booster is now a standalone guidance type (guidance.booster), not a late variant.
+    it('exposes boosterGuidance with the booster requirements', () => {
+        const r = MED_REGISTRY['sublocade'].boosterGuidance as GuidanceResult;
+        expect(r).toBeDefined();
+        expect(
+            r.idealSteps.some((s) => s.includes('booster dose may be administered any time')),
+        ).toBe(true);
+        expect(r.idealSteps.some((s) => s.includes('At least 24 hours'))).toBe(true);
+        expect(
+            r.idealSteps.some((s) => s.includes('unregulated fentanyl or other unregulated opioids')),
+        ).toBe(true);
+        expect(hasNotif(r.providerNotifications, 'reporting NO use of unregulated opioids')).toBe(
+            true,
+        );
     });
 
+    it('is no longer selectable as a late dose/history variant', () => {
+        expect(() => getGuidance(0, '100mg-booster')).toThrow();
+    });
+});
+
+describe('sublocade getLateGuidance', () => {
     // ── 100 mg monthly ────────────────────────────────────────────────────────
     describe('100 mg monthly — 5 tiers', () => {
         it('≤20 days: not yet overdue', () => {
@@ -414,21 +409,6 @@ describe('sublocade getLateGuidance', () => {
                 (entry.getLateGuidance(p57) as GuidanceResult).idealSteps.some((s) =>
                     s.includes('Consult a prescriber in real-time'),
                 ),
-            ).toBe(true);
-        });
-
-        it('100mg-booster: any date → booster requirements guidance', () => {
-            const p = entry.buildLateParams({
-                'last-sublocade': localDaysAgo(5),
-                'sublocade-type': '100mg-booster',
-            });
-            expect(p.variant).toBe('100mg-booster');
-            const r = entry.getLateGuidance(p) as GuidanceResult;
-            expect(
-                r.idealSteps.some((s) => s.includes('booster dose may be administered any time')),
-            ).toBe(true);
-            expect(
-                hasNotif(r.providerNotifications, 'reporting NO use of unregulated opioids'),
             ).toBe(true);
         });
 

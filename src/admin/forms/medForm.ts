@@ -216,6 +216,18 @@ function buildMedInfoPanel(
             'med-groups-datalist',
         ),
     );
+    // Booster guidance is optional and off by default; offer to add it when absent.
+    if (data.guidance && !data.guidance.booster) {
+        const addBoosterBtn = createEl('button', {
+            class: 'add-scenario-btn',
+            type: 'button',
+            textContent: '+ Add Booster Guidance',
+        });
+        addBoosterBtn.addEventListener('click', () => {
+            body.dispatchEvent(new CustomEvent('addbooster', { bubbles: true }));
+        });
+        body.append(addBoosterBtn);
+    }
     panel.append(section);
 }
 
@@ -293,6 +305,28 @@ function buildLatePanel(panel: HTMLDivElement, data: RawMedJson): void {
     panel.append(section);
 }
 
+function buildBoosterPanel(panel: HTMLDivElement, data: RawMedJson): void {
+    const { section, body } = makeSection('Booster Guidance');
+    body.append(
+        createEl('p', {
+            class: 'section-note',
+            textContent:
+                'Shown as a third guidance type (alongside Early and Late) for this medication. Booster guidance takes no date/dose input.',
+        }),
+    );
+    appendGuidanceFields(body, data.guidance.booster, 'guidance.booster');
+    const removeBtn = createEl('button', {
+        class: 'remove-scenario-btn',
+        type: 'button',
+        textContent: '✕ Remove Booster Guidance',
+    });
+    removeBtn.addEventListener('click', () => {
+        body.dispatchEvent(new CustomEvent('removebooster', { bubbles: true }));
+    });
+    body.append(removeBtn);
+    panel.append(section);
+}
+
 const GUIDANCE_TAB_MAP: Record<
     string,
     { label: string; build: (panel: HTMLDivElement, data: RawMedJson) => void }
@@ -300,6 +334,7 @@ const GUIDANCE_TAB_MAP: Record<
     shared: { label: 'Shared Notifications', build: buildSharedPanel },
     early: { label: 'Early Guidance', build: buildEarlyPanel },
     late: { label: 'Overdue Guidance', build: buildLatePanel },
+    booster: { label: 'Booster Guidance', build: buildBoosterPanel },
 };
 
 export function renderForm(

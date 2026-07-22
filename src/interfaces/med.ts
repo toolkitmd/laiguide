@@ -94,6 +94,12 @@ export interface MedDefinition {
     earlyVariantMap?: Record<string, EarlyVariantDef>;
     /** Shared notes from early.guidanceNote — appended after variant-specific notes. */
     earlySharedNotes?: string[];
+    /**
+     * Optional booster guidance — a flat, time/dose-independent result shown as a
+     * third guidance type (peer of early/late). Present only for meds whose JSON
+     * has a `guidance.booster` block (e.g. Sublocade, Brixadi).
+     */
+    boosterGuidance?: GuidanceResult;
     getLateGuidance(params: LateGuidanceParams): GuidanceResult;
 
     // UI config: used by main.ts to generically handle form interaction
@@ -137,6 +143,7 @@ export type CoreDef = Pick<
     | 'earlyDateField'
     | 'earlyVariantMap'
     | 'earlySharedNotes'
+    | 'boosterGuidance'
     | 'getLateGuidance'
 >;
 
