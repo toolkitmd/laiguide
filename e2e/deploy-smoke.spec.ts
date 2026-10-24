@@ -13,6 +13,15 @@ test.describe('deployed site smoke checks', () => {
         );
     });
 
+    test('protocol PDF is downloadable', async ({ page }) => {
+        await page.goto('/');
+
+        const href = await page.locator('.protocol-link a').getAttribute('href');
+        const res = await page.request.get(new URL(href!, page.url()).toString());
+        expect(res.status()).toBe(200);
+        expect(res.headers()['content-type']).toContain('application/pdf');
+    });
+
     test('medication dropdown is populated', async ({ page }) => {
         await page.goto('/');
 
